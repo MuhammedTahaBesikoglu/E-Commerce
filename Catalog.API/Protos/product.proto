@@ -1,0 +1,25 @@
+﻿syntax = "proto3";
+
+// C# tarafında sınıfların oluşturulacağı namespace
+option csharp_namespace = "Catalog.API.Protos";
+
+// Paket adımız
+package ProductGrpc;
+
+// Sepet servisinin çağıracağı metotların (Uç noktaların) tanımı
+service ProductProtoService {
+  rpc GetProduct (GetProductRequest) returns (ProductModel);
+}
+
+// Gelen İstek (Product ID'si)
+message GetProductRequest {
+  string id = 1;
+}
+
+// Geriye Dönecek Yanıt (Ürün detayları)
+message ProductModel {
+  string id = 1;
+  string name = 2;
+  double price = 3; // gRPC'de decimal olmadığı için double kullanıyoruz
+  int32 stockQuantity = 4;
+}

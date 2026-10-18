@@ -1,0 +1,28 @@
+<Solution>
+  <Folder Name="/ApiGateways/" />
+  <Folder Name="/BuildingBlocks/">
+    <Project Path="EventBus.Messages/EventBus.Messages.csproj" Id="57a2ac9e-59ae-44ac-91e4-bc37e5c66f4a" />
+  </Folder>
+  <Folder Name="/Services/" />
+  <Folder Name="/Services/BasketService/">
+    <Project Path="Basket.API/Basket.API.csproj" Id="5ef4481a-9fd3-4080-b81b-02c440398690" />
+    <Project Path="Basket.Application/Basket.Application.csproj" Id="e3762ec9-e828-44cd-9b1b-63120226ca61" />
+    <Project Path="Basket.Domain/Basket.Domain.csproj" Id="169042fe-dd89-4f0d-a976-6fbdcf1731a0" />
+    <Project Path="Basket.Infrastructure/Basket.Infrastructure.csproj" Id="3df3dde8-aabb-4aa0-bb63-5ecd1b23f904" />
+  </Folder>
+  <Folder Name="/Services/CatalogService/">
+    <Project Path="Catalog.API/Catalog.API.csproj" />
+    <Project Path="Catalog.Application/Catalog.Application.csproj" />
+    <Project Path="Catalog.Domain/Catalog.Domain.csproj" />
+    <Project Path="Catalog.Infrastructure/Catalog.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/OrderService/">
+    <Project Path="Order.API/Order.API.csproj" Id="e8bee723-ec28-448e-9a33-05c168a9ee8a" />
+    <Project Path="Order.Application/Order.Application.csproj" Id="9fc57bcc-22eb-469c-b907-bf9d3afe3e23" />
+    <Project Path="Order.Domain/Order.Domain.csproj" Id="bb39c16e-03ee-47ee-bc8a-a274c1ad8107" />
+    <Project Path="Order.Infrastructure/Order.Infrastructure.csproj" Id="fa5ac1b5-1f3e-4171-8d2e-cb833c794250" />
+  </Folder>
+  <Folder Name="/Çözüm Öğeleri/">
+    <File Path="docker-compose.yaml" />
+  </Folder>
+</Solution>

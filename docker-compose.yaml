@@ -1,0 +1,30 @@
+
+
+services:
+  # Katalog verileri için MySQL
+  catalogdb:
+    image: mysql:8.0
+    container_name: catalog-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: catalogdb
+    ports:
+      - "3307:3306"
+    restart: always
+
+  # Sepet verileri için Redis
+  basketdb:
+    image: redis:alpine
+    container_name: basket-redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  # Servisler arası event yönetimi için RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: eticaret-rabbitmq
+    ports:
+      - "5672:5672"   # Uygulama bağlantı portu
+      - "15672:15672" # Yönetim arayüzü (Tarayıcıdan izlemek için)
+    restart: always
