@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Order.Domain.Entities;
 using Order.Domain.Interfaces;
 using Order.Infrastructure.Context;
 using System;
@@ -33,6 +34,27 @@ namespace Order.Infrastructure.Repositories
                 .Include(o => o.Items) 
                 .Where(o => o.UserName == userName)
                 .ToListAsync();
+        }
+
+        public async Task<Domain.Entities.Order> GetOrderByIdAsync(Guid id)
+        {
+            return await _dbContext.Orders
+                .Where(o => o.Id == id)
+                .FirstOrDefaultAsync();
+        }
+
+        public void UpdateOrder(Domain.Entities.Order order)
+        {
+            _dbContext.Orders.Update(order);
+        }
+
+        public async Task<OrderItem> GetOrderItemByIdAsync(Guid id)
+        {
+            return await _dbContext.OrderItems
+                .Where(o => o.OrderId == id)
+                .Select(o => new OrderItem
+                { ProductId = o.ProductId})
+                .FirstOrDefaultAsync();
         }
     }
 }

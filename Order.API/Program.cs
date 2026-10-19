@@ -33,6 +33,7 @@ builder.Services.AddMassTransit(config =>
     // Tüketici (Consumer) sınıfımızı sisteme tanıtıyoruz
     config.AddConsumer<BasketCheckoutConsumer>();
 
+
     config.UsingRabbitMq((ctx, cfg) =>
     {
         // RabbitMQ sunucu adresimiz

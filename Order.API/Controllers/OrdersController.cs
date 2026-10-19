@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Order.Application.Features.Orders.Commands;
 using Order.Application.Features.Orders.Queries;
 using Order.Application.Responses;
 using System.Net;
-using MediatR;
 
 namespace Order.API.Controllers
 {
@@ -25,6 +26,24 @@ namespace Order.API.Controllers
             var query = new GetOrdersByUserNameQuery(userName);
             var orders = await _mediator.Send(query);
             return Ok(orders);
+        }
+
+        [HttpGet("detail/{id}")]
+        public async Task<ActionResult<OrderResponse>> GetOrderById(Guid id)
+        {
+            var query = new GetOrderByIdQuery(id);
+            var order = await _mediator.Send(query);
+            if (order == null) return NotFound();
+            return Ok(order);
+        }
+
+        [HttpPut("cancel/{id}")]
+        public async Task<IActionResult> CancelOrder(Guid id)
+        {
+            var command = new CancelOrderCommand(id);
+            var result = await _mediator.Send(command);
+            if (!result) return BadRequest("Sipariş iptal edilemedi veya bulunamadı.");
+            return Ok("Sipariş başarıyla iptal edildi ve iade süreci başlatıldı.");
         }
     }
 }

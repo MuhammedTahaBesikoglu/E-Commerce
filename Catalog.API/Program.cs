@@ -34,6 +34,7 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddMassTransit(config =>
 {
     config.AddConsumer<OrderCreatedConsumer>();
+    config.AddConsumer<OrderCancelledConsumer>();
 
     config.UsingRabbitMq((ctx, cfg) =>
     {
@@ -43,6 +44,11 @@ builder.Services.AddMassTransit(config =>
         cfg.ReceiveEndpoint("order-created-queue", c =>
         {
             c.ConfigureConsumer<OrderCreatedConsumer>(ctx);
+        });
+
+        cfg.ReceiveEndpoint("order-cancelled-queue", c =>
+        {
+            c.ConfigureConsumer<OrderCancelledConsumer>(ctx);
         });
     });
 });
