@@ -32,6 +32,8 @@ builder.Services.AddMassTransit(config =>
 {
     // Tüketici (Consumer) sınıfımızı sisteme tanıtıyoruz
     config.AddConsumer<BasketCheckoutConsumer>();
+    config.AddConsumer<PaymentSucceededConsumer>();
+    config.AddConsumer<PaymentFailedConsumer>();
 
 
     config.UsingRabbitMq((ctx, cfg) =>
@@ -43,6 +45,16 @@ builder.Services.AddMassTransit(config =>
         cfg.ReceiveEndpoint("basket-checkout-queue", c =>
         {
             c.ConfigureConsumer<BasketCheckoutConsumer>(ctx);
+        });
+
+        cfg.ReceiveEndpoint("order-payment-succeeded-queue", c =>
+        {
+            c.ConfigureConsumer<PaymentSucceededConsumer>(ctx);
+        });
+
+        cfg.ReceiveEndpoint("order-payment-failed-queue", c =>
+        {
+            c.ConfigureConsumer<PaymentFailedConsumer>(ctx);
         });
     });
 });

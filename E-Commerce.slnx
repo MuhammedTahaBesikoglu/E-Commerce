@@ -22,6 +22,12 @@
     <Project Path="Order.Domain/Order.Domain.csproj" Id="bb39c16e-03ee-47ee-bc8a-a274c1ad8107" />
     <Project Path="Order.Infrastructure/Order.Infrastructure.csproj" Id="fa5ac1b5-1f3e-4171-8d2e-cb833c794250" />
   </Folder>
+  <Folder Name="/Services/PaymentService/">
+    <Project Path="Payment.API/Payment.API.csproj" Id="2b92617a-820d-4943-90cd-6bd370649bdd" />
+    <Project Path="Payment.Application/Payment.Application.csproj" Id="1a8009ad-982c-4355-99ee-8c1345a29098" />
+    <Project Path="Payment.Domain/Payment.Domain.csproj" Id="24c0a4ab-a478-49c5-b20c-35d155d88a44" />
+    <Project Path="Payment.Infrastructure/Payment.Infrastructure.csproj" Id="e11d005f-8be7-4d0e-87a6-cddd94df2d77" />
+  </Folder>
   <Folder Name="/Çözüm Öğeleri/">
     <File Path="docker-compose.yaml" />
   </Folder>

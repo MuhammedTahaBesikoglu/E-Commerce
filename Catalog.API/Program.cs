@@ -29,12 +29,14 @@ builder.Services.AddMediatR(cfg =>
 { 
     cfg.RegisterServicesFromAssembly(typeof(Catalog.Application.Responses.ProductResponse).Assembly);
     cfg.AddOpenBehavior(typeof(Catalog.Application.Behaviors.ValidationBehavior<,>));
+
 });
 
 builder.Services.AddMassTransit(config =>
 {
     config.AddConsumer<OrderCreatedConsumer>();
     config.AddConsumer<OrderCancelledConsumer>();
+    config.AddConsumer<PaymentFailedConsumer>();
 
     config.UsingRabbitMq((ctx, cfg) =>
     {
@@ -49,6 +51,11 @@ builder.Services.AddMassTransit(config =>
         cfg.ReceiveEndpoint("order-cancelled-queue", c =>
         {
             c.ConfigureConsumer<OrderCancelledConsumer>(ctx);
+        });
+
+        cfg.ReceiveEndpoint("catalog-payment-failed-queue", c =>
+        {
+            c.ConfigureConsumer<PaymentFailedConsumer>(ctx);
         });
     });
 });

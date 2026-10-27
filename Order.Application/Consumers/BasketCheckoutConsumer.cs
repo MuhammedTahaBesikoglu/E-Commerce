@@ -60,6 +60,11 @@ namespace Order.Application.Consumers
             var orderCreatedEvent = new OrderCreatedEvent
             {
                 OrderId = newOrder.Id,
+                TotalPrice = newOrder.TotalPrice,
+                CardName = newOrder.CardName,
+                CardNumber = newOrder.CardNumber, 
+                Expiration = newOrder.Expiration,
+                CVV = newOrder.CVV,
                 Items = newOrder.Items.Select(x => new OrderItemPayload
                 {
                     ProductId = x.ProductId,
